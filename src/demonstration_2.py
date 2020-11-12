@@ -40,4 +40,32 @@ class TreeNode:
 
 def is_valid_BST(self, root):
     # Your code here
+    return recurse(root, float('-inf'), float('inf')
+    
+def recurse(root, min_bound, max_bound):
+    if root is None:
+        return True
+    elif root.value < min_bound or root.value > max_bound:
+        return False
+    else:
+      return recurse(root.left, min_bound, root.value - 1) \
+      and recurse(root.right, root.value, max_bound - 1)
 
+# With in-order traversal
+def in_order_traverse(root, result = []):
+    if not root:
+        return
+    in_order_traverse(root.left, result)
+    result.append(root.value)
+    in_order_travers(root.right, result)
+
+def is_sorted(elements):
+    # traverse elements two at a time
+    for i in range(1, len(elements)):
+        if elements[i -1] > elements[i]:
+            return False
+    return True
+
+def is_valid_BST(root):
+    elements = in_order_traverse(root)
+    return is_sorted(elements)

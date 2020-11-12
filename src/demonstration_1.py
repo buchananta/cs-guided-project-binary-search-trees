@@ -26,4 +26,9 @@ class BinaryTreeNode:
 
 def maxDepth(self, root):
     # Your code here
-
+    if not root:
+        return 0
+    else:
+        left = maxDepth(root.left)
+        right = maxDepth(root.right)
+        return 1 + max(left, right)
